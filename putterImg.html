@@ -1,0 +1,14 @@
+<html>
+<body>
+    <script src="https://js.puter.com/v2/"></script>
+    <img src="https://assets.puter.site/doge.jpeg" style="display:block;">
+    <script>
+        puter.ai
+            .chat(`What do you see?`, `https://assets.puter.site/doge.jpeg`, {
+                model: "gpt-5-nano", //best
+                // model: "claude-opus-4-5",
+            })
+            .then(puter.print);
+    </script>
+</body>
+</html>
