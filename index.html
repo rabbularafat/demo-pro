@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<!-- <head>
+    
+    <script src="https://raw.githubusercontent.com/rabbularafat/demo-pro/master/putter.js"></script>
+
+</head> -->
+
+
+<head>
+
+<!-- <script src="https://raw.githubusercontent.com/rabbularafat/demo-pro/master/putter.js"></script> -->
+<!-- <script src="https://raw.githubusercontent.com/rabbularafat/demo-pro/master/putterOrg.js"></script> -->
+<script src="putter.js"></script>
+ <!-- <script src="https://js.puter.com/v2/"></script> -->
+
+</head>
+
+<body>
+
+    <div id="output" style="white-space: pre-wrap; margin-bottom: 10px;"></div>
+    <button id="copyBtn" styles="position: absolute; top: 0; left: 0; height: 100vh; width: 100%;" disabled>Copy to
+        clipboard</button>
+
+    <script>
+        // localStorage.setItem(
+        //     "puter.app.id",
+        //     "app-72cb9fc0-e9a3-5ae0-9ef1-93b25c8cbd18"
+        // );
+        // localStorage.setItem(
+        //     "puter.auth.token",
+        //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6Im9HQ0NzY1dDU0U2UHdWRFRpNk00SUE9PSIsImF1IjoiY3N1ZndPbWpXdUNlOFpPeVhJeTlHQT09IiwicyI6ImFZNW9xUkxkdlpwUlJOdXBQWEtVb3c9PSIsImlhdCI6MTc2ODg1ODg0M30.cTH3m71KCK0oXzoHOV5OUIQiIIk3GnJdV1-ms-S7mn0"
+        //     // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InhyU0htdFViUzIrMTRQT083ZmJ3VkE9PSIsImF1IjoiY3N1ZndPbWpXdUNlOFpPeVhJeTlHQT09IiwicyI6IkJJQWhTblN5ODllWGw2M3hNZ282bHc9PSIsImlhdCI6MTc2ODg2OTAxMH0.CZZkIA4plYdTN3IlEyWKSTfYGbrEFmo_7nevV5RiEVM"
+        // );
+        // python will request to front js, give me puter token
+
+        const outputEl = document.getElementById("output");
+        const copyBtn = document.getElementById("copyBtn");
+        let lastResponse = "";
+        puter.ai.chat("What is life?", { model: "gpt-5-nano" })
+            .then(response => {
+                lastResponse = response;
+                outputEl.textContent = response;
+                copyBtn.disabled = false;
+                copyBtn.classList.add("ready");
+            })
+            .catch(err => {
+                outputEl.textContent = "Error: " + err;
+            });
+        copyBtn.addEventListener("click", () => {
+            if (!lastResponse) return;
+            navigator.clipboard.writeText(lastResponse)
+                .then(() => {
+                    copyBtn.textContent = "Copied!";
+                    setTimeout(() => {
+                        copyBtn.textContent = "Copy to clipboard";
+                    }, 1500);
+                });
+        });
+    </script>
+
+
+
+</body>
+
+</html>
